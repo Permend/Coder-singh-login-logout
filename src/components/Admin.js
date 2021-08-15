@@ -1,0 +1,30 @@
+import React , {Component} from 'react'
+
+import {Link} from "react-router-dom"
+import { Redirect } from 'react-router-dom'
+
+export default class Admin extends Component{
+    constructor(props){
+        super(props)
+        const token = localStorage.getItem("token")
+
+        let loggedIn =true 
+        if (token == null){
+            loggedIn = false
+        }
+        this.state={
+            loggedIn
+        }
+    }
+    render(){
+        if (this.state.loggedIn===false){
+            return <Redirect to="/"></Redirect>
+        }
+        return(
+            <div>
+            admin ki aabli ki dabli <br />
+            <Link to="/Logout">Logout</Link>
+        </div>
+        )
+    }
+}
